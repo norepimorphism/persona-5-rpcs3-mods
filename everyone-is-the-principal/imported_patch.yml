@@ -1,0 +1,24 @@
+Version: 1.2
+
+PPU-e72e715d646a94770d1902364bc66fe33b1b6606:
+  Everyone is the Principal:
+    Games:
+      "Persona 5":
+        BLUS31604: [ All ]
+        NPUB31848: [ All ]
+    Author: norepimorphism
+    Notes: Replaces all character, persona, and enemy models with that of the Principal.
+    Patch Version: 1.0
+    Patch:
+      # model/character/persona
+      - [ be32, 0x00039D38, 0x4B0000E4 ] # b      MODEL_CHARACTER_FORMAT
+      - [ be32, 0x0003A3E4, 0x4BFFFA37 ] # b      MODEL_CHARACTER_FORMAT
+
+      # model/character/enemy
+      - [ be32, 0x00039EC0, 0x4BFFFF5B ] # b      MODEL_CHARACTER_FORMAT
+
+      # model/character
+      - [ be32, 0x00039E1C, 0x38A00837 ] # li     r5, 2103
+      - [ be32, 0x00039E20, 0x38C00837 ] # li     r6, 2103
+      - [ be32, 0x00039E24, 0x38E00000 ] # li     r7, 000
+      - [ be32, 0x00039E28, 0x39000000 ] # li     r8, 00

@@ -1,0 +1,29 @@
+Version: 1.2
+
+PPU-e72e715d646a94770d1902364bc66fe33b1b6606:
+  Replace Igor With the Principal:
+    Games:
+      "Persona 5":
+        BLUS31604: [ All ]
+        NPUB31848: [ All ]
+    Author: norepimorphism
+    Notes: Replaces Igor's character model with that of the Principal.
+    Patch Version: 1.0
+    Patch:
+      # branch to trampoline
+      - [ be32, 0x00039E1C, 0x48B44A9F ] # bla    0x00B44A9C
+
+      # return if not c2001_%03d_%02d.GMD
+      - [ be32, 0x00B44A9C, 0x2C1F07D1 ] # cmpwi  r31, 2001
+      - [ be32, 0x00B44AA0, 0x40820010 ] # bne    SET_SPRINTF_R5
+
+      # set parameters to Principal
+      - [ be32, 0x00B44AA4, 0x3BE00837 ] # li     r31, 2103
+      - [ be32, 0x00B44AA8, 0x3B400000 ] # li     r26, 000
+      - [ be32, 0x00B44AAC, 0x3B600000 ] # li     r27, 00
+
+      # set sprintf r5 (overwritten by trampoline branch)
+      - [ be32, 0x00B44AB0, 0x7FE5FB78 ] # mr    r5, r31
+
+      # return
+      - [ be32, 0x00B44AB4, 0x4E800020 ] # blr
